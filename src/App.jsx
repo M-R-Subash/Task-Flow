@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
+import PageLoader from "./components/common/PageLoader";
+
+
+// Lazy load pages
+const Homepage = lazy(() => import("./pages/Homepage"));
+const Blogpage = lazy(() => import("./pages/Blogpage"));
+const Featurespage = lazy(() => import("./pages/Featurespage"));
+
+
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <Router>
+      <Navbar />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/features" element={<Featurespage />} />
+          <Route path="/blog" element={<Blogpage />} />
+        </Routes>
+      </Suspense>
+      <Footer />
+    </Router>
+  );
+};
 
-export default App
+export default App;
