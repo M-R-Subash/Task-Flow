@@ -13,7 +13,7 @@ const App = () => {
   return (
     <Router>
       <Suspense fallback={<PageLoader />}>
-        <Navbar />git 
+        <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/features" element={<Featurespage />} />
